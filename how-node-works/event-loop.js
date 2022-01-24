@@ -12,7 +12,7 @@ fs.readFile( "test-file.txt", () =>
     setTimeout(() => console.log("timer 3 finished"), 3000)
 setImmediate(() => console.log("immediate 2 finished"))
 
-
+    
 } )
 
 
