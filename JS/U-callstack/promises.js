@@ -25,7 +25,7 @@ fakeRequest("/users")
     .then( ( res ) =>
     {
         console.log("status code :", res.status )
-        console.log( "status code :", res.data )
+        console.log(  res.data )
 
     } )
     .catch( ( res ) => console.log( "status code :", res.status ) )
@@ -33,7 +33,7 @@ fakeRequest("/users")
     fakeRequest( "/about" )
         .then( ( res ) => {
             console.log( "status code :", res.status )
-            console.log( "status code :", res.data )
+            console.log( res.data )
 
         } )
         .catch( ( res ) => console.log( "status code :", res.status ) )
