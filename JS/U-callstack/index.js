@@ -29,26 +29,54 @@ makeRant( " Making a Rant about APC GOVT      ", document.body )
 
 // async, callbacks, 
 
-console.log( "I got called first" )
-setTimeout( () => console.log( "timer" ) )
+// console.log( "I got called first" )
+setTimeout( () =>
+{
+    // console.log( "timer" )
+}
+)
 
 
 //  Promises ;
 
-const willGetADog = new Promise( ( resolve, reject ) => {
+const willGetADogPromise = () => {
+ return  new Promise( ( resolve, reject ) => {
+        const rand = Math.random()
+        setTimeout( () => {
+            if ( rand > 0.5 ) {
+                resolve()
+            } else {
+                reject()
+            }
+        }, 1000 )
+    } )
+}
+
+willGetADogPromise()
+    .then( () => console.log( "I got a dog" ) )
+    .catch( () => console.log( "I got no dog" ) )
+
+const fakeRequest = ( url ) => {
+    return new Promise( ( resolve, reject ) =>
+    {
+        setTimeout( () =>
+        {
             const rand = Math.random()
-            setTimeout( () => {
-                if ( rand > 0.5)
-                {
-                    resolve()
-                    console.log(rand)
-                    
-                } else {
-                    reject()
-                    console.log(rand)
-                }
-            }, 1000 )
-} )
-        
-willGetADog.then( () => console.log( "I got a dog" ) )
-willGetADog.catch( () => console.log( "I got no dog" ) )
+            if ( rand > 0.3 )
+            {
+                resolve( {
+                    status: 200
+                })
+            }
+             else {
+                reject( {
+                    status: 404
+                 })
+             }
+        }, 1000)
+    })
+}
+
+fakeRequest()
+    .then( (res) => console.log( "I got a response",  res.status ) )
+    .catch( (res) => console.log( "I got no response", res.status ) )
