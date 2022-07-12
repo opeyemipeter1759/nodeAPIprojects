@@ -1,8 +1,21 @@
-axios.get( 'https://swapi.dev/api/planets' ).then( ( response ) =>
-{
-    console.log(response.data.results[0].name)
-} ).catch( ( e ) =>
-{
+const fetchNextPlanets = ( url = 'https://swapi.dev/api/planets/' ) => {
+    console.log( 'url', url )
+    return axios.get( url )
+}
 
-    console.log(e)
-})
+const printPlanets = ( { data} ) => {
+    console.log( data )
+    for ( let planet of data.results ) {
+        console.log( planet.name )
+    }
+    return Promise.resolve( data.next )
+}
+
+
+fetchNextPlanets()
+    .then( printPlanets )
+    .then( fetchNextPlanets )
+    .then( printPlanets )
+    .catch( ( e ) => {
+        console.log( "ERROR :", e )
+    } )
